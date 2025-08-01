@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>For Lekyyy 💜</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@400;600&display=swap');
+
+    :root {
+      --purple: #b18cd9;
+      --deep-purple: #5e2d88;
+      --white: #fff9ff;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #e9d9f9, #f7f1ff);
+      color: var(--deep-purple);
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Header */
+    header {
+      text-align: center;
+      padding: 3rem 1rem 1rem;
+    }
+    header h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3.5rem;
+      animation: fadeInDown 1s ease;
+    }
+    header p {
+      font-size: 1.2rem;
+      animation: fadeIn 2s ease;
+    }
+
+    /* Love note */
+    .love-note {
+      max-width: 90%;
+      margin: 2rem auto;
+      font-size: 1.1rem;
+      background-color: var(--white);
+      padding: 1.5rem;
+      border-left: 5px solid var(--deep-purple);
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      white-space: pre-line;
+      animation: fadeInUp 2s ease;
+    }
+
+    /* Timeline */
+    .timeline {
+      max-width: 900px;
+      margin: 4rem auto;
+      position: relative;
+      padding: 2rem 0;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 100%;
+      width: 4px;
+      background: linear-gradient(to bottom, #caa9ff, #7f3adb);
+    }
+    .timeline h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 3rem;
+    }
+    .timeline-entry {
+      background: white;
+      width: 45%;
+      padding: 1.2rem;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+      position: relative;
+      opacity: 0;
+      transform: scale(0.9);
+      transition: 0.6s ease;
+    }
+    .timeline-entry.visible { opacity: 1; transform: scale(1); }
+    .timeline-entry.left { left: 0; margin-left: 0; transform-origin: right; }
+    .timeline-entry.right { left: 50%; margin-left: 4%; transform-origin: left; }
+    .timeline-entry::after {
+      content: ''; position: absolute; top: 20px;
+      width: 16px; height: 16px;
+      background: #9e59c4;
+      border: 3px solid white;
+      border-radius: 50%;
+      z-index: 2;
+    }
+    .timeline-entry.left::after { right: -10px; }
+    .timeline-entry.right::after { left: -10px; }
+
+    /* First picture card */
+    .photo-card {
+      text-align: center;
+      margin: 5rem auto 3rem;
+    }
+    .photo-card img {
+      width: 90%;
+      max-width: 350px;
+      border-radius: 20px;
+      border: 6px solid #c9a4f7;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+    .photo-card p {
+      margin-top: 1rem;
+      font-weight: 600;
+      color: #4d0073;
+    }
+
+    /* Love letter reveal */
+    .envelope-container {
+      text-align: center;
+      margin: 5rem 1rem;
+    }
+    .reveal-btn {
+      background: #a974e6;
+      color: white;
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 40px;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      transition: background 0.3s ease;
+    }
+    .reveal-btn:hover {
+      background: #8b5fc4;
+    }
+    .letter {
+      max-width: 600px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: #fff0fe;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      font-family: 'Great Vibes', cursive;
+      font-size: 1.5rem;
+      display: none;
+    }
+
+    /* Why I Love You */
+    .carousel {
+      max-width: 600px;
+      margin: 4rem auto;
+      text-align: center;
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: #4e0072;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 3rem 1rem;
+    }
+    .footer span {
+      display: inline-block;
+      padding: 0.6rem 1.2rem;
+      background: #c5a2e0;
+      border-radius: 30px;
+      animation: pulse 2s infinite;
+      cursor: pointer;
+    }
+
+    /* Floating hearts */
+    .hearts {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: pink;
+      opacity: 0.6;
+      border-radius: 50%;
+      animation: float 8s linear infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(100vh) scale(0.8); }
+      100% { transform: translateY(-10vh) scale(1.2); }
+    }
+
+    @keyframes fadeInDown { from {opacity: 0; transform: translateY(-30px);} to {opacity: 1; transform: translateY(0);} }
+    @keyframes fadeInUp { from {opacity: 0; transform: translateY(30px);} to {opacity: 1; transform: translateY(0);} }
+    @keyframes pulse { 0%,100% {transform: scale(1);} 50% {transform: scale(1.05);} }
+  </style>
+</head>
+<body>
+
+  <div class="hearts">
+    <!-- Generate hearts via JS -->
+  </div>
+
+  <header>
+    <h1>Our Love Story 💜</h1>
+    <p>Happy Girlfriend’s Day, Lekyyy</p>
+  </header>
+
+  <div class="love-note">
+    It’s been a big journey Lekhs, when I look back at our path I feel I was blessed to have someone like you.
+
+    We are at the most comfort zone as possible. I really feel we have soo much transparency that we have no secrets, no judgements, no thale novu 😅
+
+    Only thing is: irritating each other, making fun of each other to such an extent where I guess no one else would go 😂😂
+
+    I am always really really really really reallly really really really really excited to see my chocopie, even if it’s just for few mins it feels so mind soothing.
+
+    We head out only to eat and nothing else lol... so weird, but that’s our comfort.
+
+    You really wanna give up on such relationship? 😉
+  </div>
+
+  <div class="timeline">
+    <h2>Our Journey Together ✨</h2>
+    <div class="timeline-entry left">🥰 June 10, 2023 – We made it official</div>
+    <div class="timeline-entry right">😜 Mid 2023 – Turned into pro trolls</div>
+    <div class="timeline-entry left">🍜 All plans = food food food 😂</div>
+    <div class="timeline-entry right">🫶 Present – Just us, honest & transparent</div>
+  </div>
+
+  <div class="photo-card">
+    <img src="first-pic.jpg" alt="Our First Picture">
+    <p>Our first memory together 💑</p>
+  </div>
+
+  <div class="envelope-container">
+    <button class="reveal-btn" onclick="document.querySelector('.letter').style.display='block'; this.style.display='none';">💌 Open Your Love Letter</button>
+    <div class="letter">
+      My dearest Lekyyy,<br><br>
+      You're not just a part of my life you *are* my life’s most beautiful chapter.<br><br>
+      Every moment, every tease, every plate of food shared with you feels like home.<br>
+      I love you not just because of how perfect you are... but because of how *us* feels perfect 💜<br><br>
+      Yours forever,<br>Srujan
+    </div>
+  </div>
+
+  <div class="carousel" id="carousel">
+    🫶 I love you because you're the weirdest and realest person I’ve ever met.
+  </div>
+
+  <div class="footer">
+    You really wanna give up on THIS? 😂💜<br>
+    <span onclick="alert('Huggie Huggie! 😘')">Click here to hug me IRL 💖</span>
+  </div>
+
+  <script>
+    // Floating hearts
+    const heartsContainer = document.querySelector('.hearts');
+    for (let i = 0; i < 20; i++) {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDelay = Math.random() * 8 + 's';
+      heart.style.width = heart.style.height = 10 + Math.random() * 20 + 'px';
+      heartsContainer.appendChild(heart);
+    }
+
+    // Reveal timeline entries
+    const entries = document.querySelectorAll('.timeline-entry');
+    const revealOnScroll = () => {
+      const trigger = window.innerHeight * 0.85;
+      entries.forEach(entry => {
+        const top = entry.getBoundingClientRect().top;
+        if (top < trigger) {
+          entry.classList.add('visible');
+        }
+      });
+    };
+    window.addEventListener('scroll', revealOnScroll);
+    window.addEventListener('load', revealOnScroll);
+
+    // Love reason carousel
+    const reasons = [
+      "🫶 I love you because you're the weirdest and realest person I’ve ever met.",
+      "💜 I love how we never fake a thing it’s just raw comfort.",
+      "😂 I love how we roast each other and still melt at a hug.",
+      "🍟 I love that all our memories involve food and laughter.",
+      "😍 I love that even silence with you feels warm.",
+    ];
+    let i = 0;
+    setInterval(() => {
+      document.getElementById('carousel').textContent = reasons[i % reasons.length];
+      i++;
+    }, 4000);
+  </script>
+</body>
+</html>
+
